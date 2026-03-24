@@ -27,6 +27,7 @@ pip install "numpy<2" opencv-python
 
 1. Clone and build the workspace:
 ```bash
+clone https://github.com/kushkk243/drift_interview_ws.git
 cd ~/drift_interview_ws
 colcon build
 source install/setup.bash
