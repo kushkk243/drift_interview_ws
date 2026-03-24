@@ -12,9 +12,10 @@
 ```bash
 sudo apt-get update
 sudo apt-get install -y \
-    ros-${ROS_DISTRO}-desktop \
-    ros-${ROS_DISTRO}-gazebo-ros \
+    ros-${ROS_DISTRO}-ros-gz \
     ros-${ROS_DISTRO}-nav2 \
+    ros-${ROS_DISTRO}-ros2-control\
+    ros-${ROS_DISTRO}-ros2-controllers\
     python3-colcon-common-extensions
 ```
 
@@ -55,3 +56,9 @@ cd ~/drift_interview_ws
 source install/setup.bash
 ros2 launch robot_description navigation.py
 ```
+
+## Link To Videos:
+
+- [My simulation](videos/my_sim.mkv)
+- [Drift Single Prompt](videos/single_prompt_drift.mkv)
+- [Drift Fix attempt](videos/drift_attempt_2.mkv)
