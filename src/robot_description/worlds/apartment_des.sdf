@@ -1,0 +1,544 @@
+<sdf version='1.9'>
+  <world name='apartment'>
+    <physics name='1ms' type='ignored'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <plugin name='gz::sim::systems::Physics' filename='ignition-gazebo-physics-system'/>
+    <plugin name='gz::sim::systems::UserCommands' filename='ignition-gazebo-user-commands-system'/>
+    <plugin name='gz::sim::systems::SceneBroadcaster' filename='ignition-gazebo-scene-broadcaster-system'/>
+    <plugin name='gz::sim::systems::Contact' filename='ignition-gazebo-contact-system'/>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu">
+    </plugin>
+    <gravity>0 0 -9.8</gravity>
+    <atmosphere type='adiabatic'/>
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>true</shadows>
+    </scene>
+    <model name='ground_plane'>
+      <static>true</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.1</mu>
+                <mu2>1.1</mu2>
+              </ode>
+            </friction>
+            <bounce/>
+            <contact>
+              <ode>
+                <max_vel>0.01</max_vel>
+                <min_depth>0.002</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+        <pose>0 0 0 0 -0 0</pose>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>0 0 0 0 -0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='walls'>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>package://robot_description/meshes/walls.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>package://robot_description/meshes/walls.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose>0 0 0 0 -0 0</pose>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>2.44138 -1.93811 -0 0 -0 1.57112</pose>
+      <static>true</static>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='Desk'>
+      <static>true</static>
+      <include>
+        <uri>
+            https://fuel.gazebosim.org/1.0/OpenRobotics/models/Office Desk
+        </uri>
+      </include>
+      <pose>0.03458 -1.5324 0 0 -0 0</pose>
+    </model>
+    <model name='OfficeChairGrey'>
+      <static>true</static>
+      <link name='body'>
+        <pose>0 0 0 0 -0 0</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/officechairgrey/2/files/meshes/OfficeChairGrey.obj</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/officechairgrey/2/files/meshes/OfficeChairGrey_Col.obj</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>0.768233 -1.21066 0 0 0 -0.785398</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='WhiteCabinet'>
+      <static>true</static>
+      <link name='body'>
+        <pose>0 0 0 0 -0 0</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/whitecabinet/2/files/meshes/WhiteCabinet.obj</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/whitecabinet/2/files/meshes/WhiteCabinet.obj</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>2.17566 -0.187683 0 0 0 -1.5708</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='Sofa'>
+      <link name='link'>
+        <pose>0 0 0 0 -0 1.5708</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/sofa/3/files/meshes/Sofa.obj</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/sofa/3/files/meshes/Sofa.obj</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>4.76278 -0.624961 0.00012 -0 -1e-06 -3.14154</pose>
+      <static>true</static>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='CoffeeTable'>
+       <include>
+        <uri>
+        https://fuel.gazebosim.org/1.0/OpenRobotics/models/CoffeeTable
+        </uri>
+      </include>
+      <pose>3.75617 -0.117665 -0.000121 -1e-06 -1e-06 -0.00121</pose>
+      <static>true</static>
+      <self_collide>false</self_collide>
+      <mass>10</mass>
+    </model>
+    <model name='coffee_mug'>
+      <include>
+        <uri>
+          https://fuel.gazebosim.org/1.0/GoogleResearch/models/ACE_Coffee_Mug_Kristen_16_oz_cup
+        </uri>
+      </include>
+      <pose>3.7802 -0.238503 0.372596 -0.003562 0.013765 -2.28891</pose>
+      <static>false</static>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='VisitorKidSit'>
+      <static>true</static>
+      <link name='body'>
+        <pose>0 0 0 0 -0 0</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/visitorkidsit/2/files/meshes/VisitorKidSit.obj</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/visitorkidsit/2/files/meshes/VisitorKidSit_Col.obj</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <mass>48</mass>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>4.48192 -0.676295 0 0 0 -1.51238</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='cafe_table'>
+      <static>true</static>
+      <link name='link'>
+        <collision name='surface'>
+          <pose>0 0 0.755 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.913 0.913 0.04</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <collision name='column'>
+          <pose>0 0 0.37 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.042 0.042 0.74</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <collision name='base'>
+          <pose>0 0 0.02 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.56 0.56 0.04</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/cafe table/3/files/meshes/cafe_table.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>10</mass>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>4.70221 -3.69128 0 0 -0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='DiningChair1'>
+      <include>
+        <uri>
+          https://fuel.gazebosim.org/1.0/OpenRobotics/models/Dining Chair
+        </uri>
+      </include>
+      <pose>4.72553 -3.06389 0 0 -0 0</pose>
+      <self_collide>false</self_collide>
+      <static>true</static>
+    </model>
+    <model name='DiningChair2'>
+      <static>true</static>
+      <include>
+        <uri>
+          https://fuel.gazebosim.org/1.0/OpenRobotics/models/Dining Chair
+        </uri>
+      </include>
+      <pose>4.02066 -3.87141 0 0 -0 2.35619</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='bottles'>
+      <include>
+        <uri>
+          https://fuel.gazebosim.org/1.0/GoogleResearch/models/FOOD_BEVERAGE_SET
+        </uri>
+      </include>
+      <pose>4.97335 -3.89338 0.774971 -0.000291 -4.4e-05 -2.3562</pose>
+      <static>true</static>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='breakfast_plate'>
+      <include>
+        <uri>
+        https://fuel.gazebosim.org/1.0/GoogleResearch/models/BAGEL_WITH_CHEESE
+        </uri>
+      </include>
+      <pose>4.59497 -3.37188 0.77459 -0.002083 -0.007043 2.5e-05</pose>
+      <static>true</static>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='bin'>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>package://robot_description/meshes/bin.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>package://robot_description/meshes/bin.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>50</mass>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>0.188343 -3.19353 0.1 -0 -0 -0</pose>
+      <static>true</static>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='can'>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>package://robot_description/meshes/can.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>package://robot_description/meshes/can.dae</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.8</mu>
+                <mu2>0.8</mu2>
+              </ode>
+            </friction>
+            <contact>
+              <ode>
+                <kp>100000</kp>
+                <kd>100</kd>
+                <max_vel>0.01</max_vel>
+                <min_depth>0.002</min_depth>
+              </ode>
+            </contact>
+            <bounce>
+              <restitution_coefficient>0.0</restitution_coefficient>
+              <threshold>0.0</threshold>
+            </bounce>
+          </surface>
+        </collision>
+        <pose>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.000525</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.000525</iyy>
+            <iyz>0</iyz>
+            <izz>0.0002208</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>0.824559 -2.09052 0.017 3.14159 -1.55211 3.14159</pose>
+      <static>false</static>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='clock'>
+      <include>
+          <uri>
+            https://fuel.gazebosim.org/1.0/GoogleResearch/models/Crosley_Alarm_Clock_Vintage_Metal
+          </uri>
+      </include>
+      <mass>0.2</mass>
+      <pose>4.920 -1.6153 0 0 0 0</pose>
+      <static>false</static>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='screwdriver'>
+      <include>
+          <uri>
+            https://fuel.gazebosim.org/1.0/GoogleResearch/models/Craftsman_Grip_Screwdriver_Phillips_Cushion
+          </uri>
+      </include>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.8</mu>
+            <mu2>0.8</mu2>
+          </ode>
+        </friction>
+      </surface>
+      <pose>2.9349 -0.1153 0 0 0 -0.7271</pose>
+      <mass>0.05</mass>
+      <static>false</static>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='bus_toy'>
+      <include>
+        <uri>
+        https://fuel.gazebosim.org/1.0/GoogleResearch/models/SCHOOL_BUS
+        </uri>
+      </include>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.8</mu>
+            <mu2>0.8</mu2>
+          </ode>
+        </friction>
+      </surface>
+      <pose>1.3945 -4.17 0 0 0 1.20</pose>
+      <mass>0.05</mass>
+      <static>false</static>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='dino_toy'>
+      <include>
+        <uri>
+          https://fuel.gazebosim.org/1.0/GoogleResearch/models/Dino_3
+        </uri>
+      </include>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.8</mu>
+            <mu2>0.8</mu2>
+          </ode>
+        </friction>
+      </surface>
+      <pose>4.07 -3.26 0 0 0 0</pose>
+      <mass>0.25</mass>
+      <static>false</static>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='shoe'>
+      <include>
+        <uri>
+          https://fuel.gazebosim.org/1.0/GoogleResearch/models/adistar_boost_m
+        </uri>
+      </include>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.8</mu>
+            <mu2>0.8</mu2>
+          </ode>
+        </friction>
+      </surface>
+      <pose>2.1235 -0.89 0 0 0 0</pose>
+      <mass>0.2</mass>
+      <static>false</static>
+      <self_collide>false</self_collide>
+    </model>
+    <light name='sun' type='directional'>
+      <pose>0 0 10 0 -0 0</pose>
+      <cast_shadows>true</cast_shadows>
+      <intensity>1</intensity>
+      <direction>-0.5 0.1 -0.9</direction>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <linear>0.01</linear>
+        <constant>0.90000000000000002</constant>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+    <light name='room1light' type='spot'>
+      <pose>1.44 -2.4 2 0 -0 0</pose>
+      <cast_shadows>true</cast_shadows>
+      <intensity>5</intensity>
+      <direction>0 0 -1</direction>
+      <diffuse>1 0.933 0.768 1</diffuse>
+      <specular>0.96 0.88 0.70 1</specular>
+      <attenuation>
+        <range>4</range>
+        <linear>0.5</linear>
+        <constant>0.2</constant>
+        <quadratic>0.5</quadratic>
+      </attenuation>
+      <spot>
+        <inner_angle>4.1</inner_angle>
+        <outer_angle>6.5</outer_angle>
+        <falloff>0.5</falloff>
+      </spot>
+    </light>
+    <light name='room2light' type='spot'>
+      <pose>4.27 -2.4 2 0 -0 0</pose>
+      <cast_shadows>true</cast_shadows>
+      <intensity>5</intensity>
+      <direction>0 0 -1</direction>
+      <diffuse>1 0.933 0.768 1</diffuse>
+      <specular>0.96 0.88 0.70 1</specular>
+      <attenuation>
+        <range>4</range>
+        <linear>0.5</linear>
+        <constant>0.2</constant>
+        <quadratic>0.5</quadratic>
+      </attenuation>
+      <spot>
+        <inner_angle>4.1</inner_angle>
+        <outer_angle>6.5</outer_angle>
+        <falloff>0.5</falloff>
+      </spot>
+    </light>
+  </world>
+</sdf>

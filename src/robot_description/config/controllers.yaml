@@ -1,0 +1,116 @@
+# controllers.yaml
+# Robot: drift_asg (my_robot)
+# Hardware plugin: gz_ros2_control/GazeboSimSystem
+#
+# Controller groups:
+#   - joint_state_broadcaster  : publishes all joint states
+#   - wheel_controller         : velocity control for all 4 drive wheels
+#   - arm_left_controller      : position trajectory for left arm (shoulder → elbow → wrist)
+#   - arm_right_controller     : position trajectory for right arm (shoulder → elbow → wrist)
+#   - gripper_left_controller  : position control for left gripper fingers
+#   - gripper_right_controller : position control for right gripper fingers
+
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    arm_left_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    arm_right_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    gripper_left_controller:
+      type: position_controllers/JointGroupPositionController
+
+    gripper_right_controller:
+      type: position_controllers/JointGroupPositionController
+
+arm_left_controller:
+  ros__parameters:
+    joints:
+      - shoulder_l_joint
+      - elbow_l_joint
+      - wrist_l_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    state_publish_rate: 50.0      
+    action_monitor_rate: 20.0      
+    allow_partial_joints_goal: false
+    open_loop_control: false
+    constraints:
+      stopped_velocity_tolerance: 0.01  
+      goal_time: 0.0                    
+      shoulder_l_joint:
+        trajectory: 0.5
+        goal: 0.1
+      elbow_l_joint:
+        trajectory: 0.5
+        goal: 0.1
+      wrist_l_joint:
+        trajectory: 0.5
+        goal: 0.1
+    initial_state:
+      shoulder_l_joint: 0.0
+      elbow_l_joint: 0
+      wrist_l_joint: 0.0
+
+arm_right_controller:
+  ros__parameters:
+    joints:
+      - shoulder_r_joint
+      - elbow_r_joint
+      - wrist_r_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    state_publish_rate: 50.0
+    action_monitor_rate: 20.0
+    allow_partial_joints_goal: false
+    open_loop_control: false
+    constraints:
+      stopped_velocity_tolerance: 0.01
+      goal_time: 0.0
+      shoulder_r_joint:
+        trajectory: 0.1
+        goal: 0.05
+      elbow_r_joint:
+        trajectory: 0.1
+        goal: 0.05
+      wrist_r_joint:
+        trajectory: 0.1
+        goal: 0.05
+    initial_state:
+      shoulder_r_joint: 0.0
+      elbow_r_joint: 0
+      wrist_r_joint: 0.0
+
+gripper_left_controller:
+  ros__parameters:
+    joints:
+      - gripper_finger_ll_joint
+      - gripper_finger_lr_joint
+    command_interfaces:
+      - position
+    gains:
+      gripper_finger_ll_joint: {"p": 100.0, i: 0.1, d: 10.0}
+      gripper_finger_lr_joint: {"p": 100.0, i: 0.1, d: 10.0}
+
+gripper_right_controller:
+  ros__parameters:
+    joints:
+      - gripper_finger_rl_joint
+      - gripper_finger_rr_joint
+    command_interfaces:
+      - position
+    gains:
+      gripper_finger_rl_joint: {"p": 100.0, i: 0.1, d: 10.0}
+      gripper_finger_rr_joint: {"p": 100.0, i: 0.1, d: 10.0}
