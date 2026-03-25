@@ -17,6 +17,7 @@ sudo apt-get install -y \
     ros-${ROS_DISTRO}-ros2-control\
     ros-${ROS_DISTRO}-ros2-controllers\
     python3-colcon-common-extensions
+sudo apt install ros-humble-gz-ros2-control ros-humble-gz-ros2-control-demos
 ```
 
 ### Required Python Packages
