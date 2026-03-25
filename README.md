@@ -64,3 +64,6 @@ ros2 launch robot_description navigation.py
 - [My simulation](docs/videos/my_sim.mkv)
 - [Drift Single Prompt](docs/videos/single_prompt_drift.mkv)
 - [Drift Fix attempt](docs/videos/drift_attempt_2.mkv)
+
+## Approach document
+The [approach.md](docs/approach.md) file has been stored in the [docs](docs/) folder of this repo.
